@@ -29,20 +29,20 @@ public class MOBOPart extends PCComponent {
         this.PCIE_version = PCIE_version;
     }
 
-    @Override
-    public String toString() {
-        return "PCMotherboardComponent{" +
-                "formFactor='" + formFactor + '\'' +
-                ", CPU_socket='" + CPU_socket + '\'' +
-                ", RAM_slots=" + RAM_slots +
-                ", RAM_type='" + RAM_type + '\'' +
-                ", color='" + color + '\'' +
-                ", PCIE_slots=" + PCIE_slots +
-                ", m2_slots=" + m2_slots +
-                ", Sata_ports=" + Sata_ports +
-                ", USB_ports=" + USB_ports +
-                ", Network_type=" + Network_type +
-                ", PCIE_version=" + PCIE_version +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "{" +
+//                "formFactor='" + formFactor + '\'' +
+//                ", CPU_socket='" + CPU_socket + '\'' +
+//                ", RAM_slots=" + RAM_slots +
+//                ", RAM_type='" + RAM_type + '\'' +
+//                ", color='" + color + '\'' +
+//                ", PCIE_slots=" + PCIE_slots +
+//                ", m2_slots=" + m2_slots +
+//                ", Sata_ports=" + Sata_ports +
+//                ", USB_ports=" + USB_ports +
+//                ", Network_type=" + Network_type +
+//                ", PCIE_version=" + PCIE_version +
+//                '}';
+//    }
 }

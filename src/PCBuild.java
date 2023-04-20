@@ -6,7 +6,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class PCBuild {
-    private ArrayList<PCComponent> pcBuildComponentList;
+    private ArrayList<PCComponent> pcBuildComponentList = new ArrayList<>();
     private PCComponent tempPartHolder;
     private PartDatabase partDatabase;
     private CPUPart CPU;
@@ -16,9 +16,12 @@ public class PCBuild {
     private CasePart Case;
     private int totalWattage;
     private User owner;
+    private double totalPrice;
 
-    public PCBuild(User owner){
+    public PCBuild(User owner, PartDatabase partDatabase){
+        System.out.println("- - - - - - - N E W   B U I L D   C R E A T E D - - - - - - -");
         this.owner = owner;
+        this.partDatabase = partDatabase;
     }
 
     public ArrayList<PCComponent> selectCPU() {
@@ -111,7 +114,15 @@ public class PCBuild {
                     tempPartHolder = null;
                     return false;
                 }
+                System.out.println("Filtered CPU List:");
+                for(int i = 0; i < filteredList.size(); i++) {
+                    System.out.println(filteredList.get(i).toString());
+                }
+                System.out.println(filteredList.get(selection).name + " selected.\n");
+                pcBuildComponentList.remove(this.CPU);
                 CPU = (CPUPart) filteredList.get(selection);
+                pcBuildComponentList.add(filteredList.get(selection));
+                printBuild();
                 return true;
             case "gpu":
                 filteredList.addAll(selectGPU());
@@ -121,7 +132,15 @@ public class PCBuild {
                     tempPartHolder = null;
                     return false;
                 }
+                System.out.println("Filtered GPU List:");
+                for(int i = 0; i < filteredList.size(); i++) {
+                    System.out.println(filteredList.get(i).toString());
+                }
+                System.out.println(filteredList.get(selection).name + " selected.\n");
+                pcBuildComponentList.remove(this.GPU);
                 GPU = (GPUPart) filteredList.get(selection);
+                pcBuildComponentList.add(filteredList.get(selection));
+                printBuild();
                 return true;
             case "psu":
                 filteredList.addAll(selectPSU());
@@ -131,7 +150,16 @@ public class PCBuild {
                     tempPartHolder = null;
                     return false;
                 }
+                System.out.println("Filtered PSU List:");
+                for(int i = 0; i < filteredList.size(); i++) {
+                    System.out.println(filteredList.get(i).toString());
+                }
+                System.out.println(filteredList.get(selection).name + " selected.\n");
+                pcBuildComponentList.remove(this.PSU);
                 PSU = (PSUPart) filteredList.get(selection);
+                pcBuildComponentList.add(filteredList.get(selection));
+                printBuild();
+                return true;
             case "mobo":
                 filteredList.addAll(selectMOBO());
                 if(filteredList.size() == 0) return false;
@@ -140,7 +168,15 @@ public class PCBuild {
                     tempPartHolder = null;
                     return false;
                 }
+                System.out.println("Filtered MOBO List:");
+                for(int i = 0; i < filteredList.size(); i++) {
+                    System.out.println(filteredList.get(i).toString());
+                }
+                System.out.println(filteredList.get(selection).name + " selected.\n");
+                pcBuildComponentList.remove(this.MOBO);
                 MOBO = (MOBOPart) filteredList.get(selection);
+                pcBuildComponentList.add(filteredList.get(selection));
+                printBuild();
                 return true;
             case "case":
                 filteredList.addAll(selectCase());
@@ -150,7 +186,15 @@ public class PCBuild {
                     tempPartHolder = null;
                     return false;
                 }
+                System.out.println("Filtered Case List:");
+                for(int i = 0; i < filteredList.size(); i++) {
+                    System.out.println(filteredList.get(i).toString());
+                }
+                System.out.println(filteredList.get(selection).name + " selected.\n");
+                pcBuildComponentList.remove(this.Case);
                 Case = (CasePart) filteredList.get(selection);
+                pcBuildComponentList.add(filteredList.get(selection));
+                printBuild();
                 return true;
             default:
                 System.out.println("Invalid part type.");
@@ -165,30 +209,40 @@ public class PCBuild {
                 pcBuildComponentList.remove(CPU);
                 CPU = null;
                 updateWattage();
+                System.out.println("CPU removed.\n");
+                printBuild();
                 return;
             case "gpu":
                 if(GPU == null) return;
                 pcBuildComponentList.remove(GPU);
                 GPU = null;
                 updateWattage();
+                System.out.println("GPU removed.\n");
+                printBuild();
                 return;
             case "psu":
                 if(PSU == null) return;
                 pcBuildComponentList.remove(PSU);
                 PSU = null;
                 updateWattage();
+                System.out.println("PSU removed.\n");
+                printBuild();
                 return;
             case "mobo":
                 if(MOBO == null) return;
                 pcBuildComponentList.remove(MOBO);
                 MOBO = null;
                 updateWattage();
+                System.out.println("MOBO removed.\n");
+                printBuild();
                 return;
             case "case":
                 if(Case == null) return;
                 pcBuildComponentList.remove(Case);
                 CPU = null;
                 updateWattage();
+                System.out.println("Case removed.\n");
+                printBuild();
                 return;
             default:
                 break;
@@ -211,6 +265,7 @@ public class PCBuild {
 
     private boolean wattageCheck(PCComponent part) {
         if(!(part instanceof PCPoweredComponent)) return true;
+        if(PSU == null) return true;
         PCPoweredComponent poweredPart = (PCPoweredComponent) part;
         updateWattage();
         if(PSU.getWattage() - totalWattage - poweredPart.getWattage() < 0) {
@@ -254,11 +309,50 @@ public class PCBuild {
     }
 
     public void writeList() throws IOException {
+        if(owner == null || GPU == null || PSU == null || CPU == null || MOBO == null || Case == null){
+            System.out.println(" - - WRITE: System is not complete! - - \n");
+            return;
+        }
+        System.out.println(" - - WRITE: Write to Builds.txt succeeded! - - \n");
         FileWriter fileWriter = new FileWriter("data/Builds.txt", true);
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
         PrintWriter printWriter = new PrintWriter(bufferedWriter);
         printWriter.println(owner.getUserID() + "\n" + GPU.getModelNumber() + "\n" + PSU.getModelNumber() + "\n"
-                + CPU.getModelNumber() + "\n" + MOBO.getModelNumber() + "\n" + Case.getModelNumber() + "\n" + "---" + "\n");
+                + CPU.getModelNumber() + "\n" + MOBO.getModelNumber() + "\n" + Case.getModelNumber() + "\n" + "---");
         printWriter.close();
+        
+    }
+
+    public double price(){
+        totalPrice = 0;
+        int i = 0;
+        if(pcBuildComponentList.size() == 0){
+            return 0;
+        }
+        double CPUPrice = 0;
+        double GPUPrice = 0;
+        double MOBOPrice = 0;
+        double CasePrice = 0;
+        double PSUPrice = 0;
+        if(CPU != null) CPUPrice = CPU.getPrice();
+        if(GPU != null) GPUPrice = GPU.getPrice();
+        if(MOBO != null) MOBOPrice = MOBO.getPrice();
+        if(Case != null) CasePrice = Case.getPrice();
+        if(PSU != null) PSUPrice = PSU.getPrice();
+        return CPUPrice + GPUPrice + MOBOPrice + CasePrice + PSUPrice;
+    }
+
+    public void printBuild() {
+        String CPUName = null;
+        String GPUName = null;
+        String MOBOName = null;
+        String CaseName = null;
+        String PSUName = null;
+        if(CPU != null) CPUName = CPU.getName();
+        if(GPU != null) GPUName = GPU.getName();
+        if(MOBO != null) MOBOName = MOBO.getName();
+        if(Case != null) CaseName = Case.getName();
+        if(PSU != null) PSUName = PSU.getName();
+        System.out.println("-----UPDATED BUILD-----\nCPU: " + CPUName + "\nGPU: " + GPUName + "\nMOBO: " + MOBOName + "\nCase: " + CaseName + "\nPSU: " + PSUName + "\nPrice: " + price() + "\n");
     }
 }

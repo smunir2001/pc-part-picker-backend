@@ -17,26 +17,27 @@ public class PartDatabase {
         makeCases();
         makeCPUs();
         makePSUs();
+        makeMOBOs();
     }
 
     public void makeGPUs(){
         GPUPart GPU1 = new GPUPart("RTX 3060 12GB", "NVIDIA", 3060, new float[]{1, 2, 3},
-                500, 200,1700,300,4,12,"gddr6","silver");
+                500, 200,1300,300,4,12,"gddr6","silver");
         components.add(GPU1);
         GPUs.add(GPU1);
 
         GPUPart GPU2 = new GPUPart("RTX 3070", "NVIDIA", 3070, new float[]{4, 5, 6},
-                600, 300,1700,300,4,8,"gddr6","silver");
+                600, 300,1700,300,4,8,"gddr6","black");
         components.add(GPU2);
         GPUs.add(GPU2);
 
         GPUPart GPU3 = new GPUPart("RTX 2080 TI", "NVIDIA", 3080, new float[]{7, 8, 9},
-                700, 500,1700,300,4,11,"gddr6","silver");
+                700, 500,1600,300,4,11,"gddr6","green");
         components.add(GPU3);
         GPUs.add(GPU3);
 
         GPUPart GPU4 = new GPUPart("RTX 3090", "NVIDIA", 3090, new float[]{10, 11, 12},
-                800, 600,1700,300,4,24,"gddr6","silver");
+                800, 600,1800,300,4,24,"gddr6","blue");
         components.add(GPU4);
         GPUs.add(GPU4);
     }
@@ -75,14 +76,18 @@ public class PartDatabase {
         PSUPart PSU2 = new PSUPart("smart700", "thermaltake", 7, new float[]{6, 6, 6}, 120, 850);
         components.add(PSU2);
         PSUs.add(PSU2);
+
+        PSUPart PSU3 = new PSUPart("smallTest", "smalltake", 8, new float[]{6, 6, 6}, 120, 350);
+        components.add(PSU3);
+        PSUs.add(PSU3);
     }
 
     public void makeMOBOs(){
-        MOBOPart MOBO1 = new MOBOPart("b550", "aurous", 8, new float[]{1, 1, 1}, 120,"atx", "am4", 4, "ddr4", "black", 4, 2, 2, 4, 1, 4);
+        MOBOPart MOBO1 = new MOBOPart("b550", "aurous", 9, new float[]{1, 1, 1}, 120,"atx", "am4", 4, "ddr4", "black", 4, 2, 2, 4, 1, 4);
         components.add(MOBO1);
         MOBOs.add(MOBO1);
 
-        MOBOPart MOBO2 = new MOBOPart("z490", "asus", 9, new float[]{1, 1, 1}, 120,"atx", "lga1200", 4, "ddr4", "black", 4, 2, 2, 4, 1, 4);
+        MOBOPart MOBO2 = new MOBOPart("z490", "asus", 10, new float[]{1, 1, 1}, 120,"atx", "lga1200", 4, "ddr4", "black", 4, 2, 2, 4, 1, 4);
         components.add(MOBO2);
         MOBOs.add(MOBO2);
     }

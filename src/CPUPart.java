@@ -46,4 +46,18 @@ public class CPUPart extends PCPoweredComponent {
     public float getPCIE_ver() {
         return PCIE_ver;
     }
+
+//    @Override
+//    public String toString() {
+//        return "{" +
+//                "num_cores=" + num_cores +
+//                ", num_threads=" + num_threads +
+//                ", clock_speed=" + clock_speed +
+//                ", cache=" + cache +
+//                ", socket='" + socket + '\'' +
+//                ", PCIE_lanes=" + PCIE_lanes +
+//                ", PCIE_ver=" + PCIE_ver +
+//                '}';
+//    }
+
 }

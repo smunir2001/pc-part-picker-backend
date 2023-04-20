@@ -41,9 +41,9 @@ public class GPUPart extends PCPoweredComponent {
         return memory_type;
     }
 
-    @Override
+    /*@Override
     public String toString() {
-        return "PCGraphicsCardComponent{" +
+        return "name=" + name +
                 "CUDAcores=" + CUDAcores +
                 ", RTcores=" + RTcores +
                 ", PCIE_ver=" + PCIE_ver +
@@ -52,5 +52,5 @@ public class GPUPart extends PCPoweredComponent {
                 ", wattage=" + wattage +
                 ", color='" + color + '\'' +
                 '}';
-    }
+    }*/
 }

@@ -1,9 +1,11 @@
+import java.util.Arrays;
+
 public class PCComponent {
-    private String name;
-    private String manufacturer;
-    private int modelNumber;
-    private float[] dimensions;
-    private float price;
+    protected String name;
+    protected String manufacturer;
+    protected int modelNumber;
+    protected float[] dimensions;
+    protected double price;
 
     public PCComponent(String name, String manufacturer, int modelNumber, float[] dimensions, float price) {
         this.name = name;
@@ -30,7 +32,18 @@ public class PCComponent {
         return dimensions;
     }
 
-    public float getPrice() {
+    public double getPrice() {
         return price;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "name='" + name + '\'' +
+                ", manufacturer='" + manufacturer + '\'' +
+                ", modelNumber=" + modelNumber +
+                ", dimensions=" + Arrays.toString(dimensions) +
+                ", price=" + price +
+                '}';
     }
 }

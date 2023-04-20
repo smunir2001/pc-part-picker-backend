@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class PCPoweredComponent extends PCComponent{
     protected int wattage;
 
@@ -8,5 +10,17 @@ public class PCPoweredComponent extends PCComponent{
 
     public int getWattage() {
         return this.wattage;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "name='" + name + '\'' +
+                ", manufacturer='" + manufacturer + '\'' +
+                ", modelNumber=" + modelNumber +
+                ", dimensions=" + Arrays.toString(dimensions) +
+                ", price=" + price +
+                ", wattage= " + wattage +
+                '}';
     }
 }
