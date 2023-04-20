@@ -10,10 +10,11 @@ public class Main {
         User tempUser = new User("John", "Doe", "johndoe123@email.com", "johnDoe123", tempAddress);
         System.out.println(tempUser);
 
-        FileWriter fileWriter = new FileWriter("data/Users.txt", true);
-        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-        PrintWriter printWriter = new PrintWriter(bufferedWriter);
-        printWriter.println(tempUser.toString());
-        printWriter.close();
+        // algorithm to write to file
+//        FileWriter fileWriter = new FileWriter("data/Users.txt", true);
+//        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+//        PrintWriter printWriter = new PrintWriter(bufferedWriter);
+//        printWriter.println(tempUser.toString());
+//        printWriter.close();
     }
 }
