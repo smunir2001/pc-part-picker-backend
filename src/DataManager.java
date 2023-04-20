@@ -8,13 +8,20 @@ public class DataManager {
     private ArrayList<User> usersList = new ArrayList<>();
     // private ArrayList<PCBuild> buildsList = new ArrayList<PCBuild>();
 
-    public DataManager() {}
+    public DataManager() throws IOException {
+        populateUsers();
+    }
 
     private void populateUsers() throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new FileReader("data/Users.txt"));
         String readLine;
         if (bufferedReader.readLine() == null) {
-            System.out.println("data/Users.txt is empty.");
+            System.out.println("No current users in the database.");
+        } else {
+            while ((readLine = bufferedReader.readLine()) != null) {
+                System.out.println(readLine);
+            }
+            bufferedReader.close();
         }
     }
 }

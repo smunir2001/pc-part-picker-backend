@@ -1,3 +1,4 @@
+import javax.xml.crypto.Data;
 import java.io.*;
 import java.nio.Buffer;
 
@@ -8,7 +9,9 @@ public class Main {
 
         Address tempAddress = new Address("123 Main St.", "Somerset", "New Jersey", "08873", "United States");
         User tempUser = new User("John", "Doe", "johndoe123@email.com", "johnDoe123", tempAddress);
-        System.out.println(tempUser);
+//        System.out.println(tempUser);
+
+        DataManager dm = new DataManager();
 
         // algorithm to write to file
 //        FileWriter fileWriter = new FileWriter("data/Users.txt", true);
