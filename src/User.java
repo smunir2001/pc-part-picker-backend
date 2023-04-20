@@ -4,6 +4,7 @@ public class User {
     private String email;
     private String password;
     private int userID;
+    private Address address;
 
     public User() {}
 
@@ -12,6 +13,16 @@ public class User {
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+        setUserID();
+    }
+
+    public User(String firstName, String lastName, String email, String password, Address address) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.address = address;
+        setUserID();
     }
 
     public void setFirstName(String firstName) {
@@ -54,9 +65,18 @@ public class User {
         return this.userID;
     }
 
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public String getAddress() {
+        return this.address.toString();
+    }
+
     @Override
     public String toString() {
-        String userOutput = this.userID + "\n" + this.firstName + " " + this.lastName + "\n" + this.email + "\n" + this.password;
+        String userOutput = this.userID + "\n" + this.firstName + " " + this.lastName + "\n" + this.email + "\n" + this.password +
+                "\n" + this.getAddress();
         return userOutput;
     }
 }
