@@ -61,12 +61,36 @@ public class User {
         this.userID = Math.abs((this.firstName + " " + this.lastName + " " + this.email).hashCode());
     }
 
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
     public int getUserID() {
         return this.userID;
     }
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public void setStreetAddress(String streetAddress) {
+        this.address.setStreetAddress(streetAddress);
+    }
+
+    public void setCity(String city) {
+        this.address.setCity(city);
+    }
+
+    public void setState(String state) {
+        this.address.setState(state);
+    }
+
+    public void setZip(String zip) {
+        this.address.setZip(zip);
+    }
+
+    public void setCountry(String country) {
+        this.address.setCountry(country);
     }
 
     public String getAddress() {
@@ -76,7 +100,7 @@ public class User {
     @Override
     public String toString() {
         String userOutput = this.userID + "\n" + this.firstName + " " + this.lastName + "\n" + this.email + "\n" + this.password +
-                "\n" + this.getAddress();
+                "\n" + this.getAddress() + "\n-------";
         return userOutput;
     }
 }
