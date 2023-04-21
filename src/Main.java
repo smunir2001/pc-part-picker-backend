@@ -25,25 +25,25 @@ public class Main {
 
         PartDatabase partDatabase = new PartDatabase();
         PCBuild pcBuild1 = new PCBuild(tempUser, partDatabase);
-        pcBuild1.addComponent("psu", 2);
-        pcBuild1.addComponent("gpu", 0);
-        pcBuild1.writeList();
-
-        pcBuild1.addComponent("psu", 0);
-        pcBuild1.addComponent("cpu", 0);
-        pcBuild1.addComponent("case", 0);
-        pcBuild1.addComponent("mobo", 0);
-        pcBuild1.removeComponent("mobo");
-        pcBuild1.addComponent("mobo", 1);
-        pcBuild1.addComponent("gpu", 2);
-        pcBuild1.writeList();
-
+//        pcBuild1.addComponent("psu", 2);
+//        pcBuild1.addComponent("gpu", 0);
+//        pcBuild1.writeList();
+//
+//        pcBuild1.addComponent("psu", 0);
+//        pcBuild1.addComponent("cpu", 0);
+//        pcBuild1.addComponent("case", 0);
+//        pcBuild1.addComponent("mobo", 0);
+//        pcBuild1.removeComponent("mobo");
+//        pcBuild1.addComponent("mobo", 1);
+//        pcBuild1.addComponent("gpu", 2);
+//        pcBuild1.writeList();
+////
         PCBuild pcBuild2 = new PCBuild(tempUser2, partDatabase);
-        pcBuild2.addComponent("psu", 0);
-        pcBuild2.addComponent("cpu", 2);
-        pcBuild2.removeComponent("psu");
-        pcBuild2.removeComponent("cpu");
-        pcBuild2.writeList();
+//        pcBuild2.addComponent("psu", 0);
+//        pcBuild2.addComponent("cpu", 2);
+//        pcBuild2.removeComponent("psu");
+//        pcBuild2.removeComponent("cpu");
+//        pcBuild2.writeList();
 
         pcBuild2.addComponent("psu", 0);
         pcBuild2.addComponent("cpu", 2);
